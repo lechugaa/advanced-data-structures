@@ -2,19 +2,35 @@ package MinHeap;
 
 import java.util.Arrays;
 
+/**
+ * <h1>MinHeap</h1>
+ * The MinHeap class implements an array based binary min heap,
+ * for simplicity, the first element of the array is always null.
+ * MinHeap class has insert, eraseMin and getMin methods.
+ * 
+ * @author: Antonio Lechuga
+ * @version: 1.0
+ * @since: 2020-03-17
+*/
 public class MinHeap<T extends Comparable<T>> implements MinHeapADT<T> {
 
     private T[] data;
     private int counter;
     private int capacity;
 
+    @SuppressWarnings("unchecked")
     MinHeap() {
         capacity = MinHeapConstants.DEFAULT_CAPACITY;
         data = (T[]) new Comparable[capacity];
         counter = MinHeapConstants.FIRST_INDEX;
     }
 
-    @Override
+    /**
+     * This method is used to insert a new element into the heap.
+     * It performs the insertion while preseving the min heap 
+     * structure.
+     * @param element This is the element that is going to be inserted
+     */
     public void insert(T element) {
         
         if (counter >= capacity) {
@@ -36,14 +52,21 @@ public class MinHeap<T extends Comparable<T>> implements MinHeapADT<T> {
         }
     }
 
+    // extends capacity of array in case it is going to be exceeded
     private void extendCapacityByTimes(int factor) {
         capacity *= factor;
         data = Arrays.copyOf(data, capacity);
     }
 
-    @Override
+    /**
+         * This method erases de minimum element from the heap.
+         * Ir performs the deletion while preserving the min heap
+         * structre.
+         * 
+         * @return Deleted element
+    */
     public T eraseMin() {
-
+        
         if (counter == MinHeapConstants.FIRST_INDEX) 
             return null;
 
@@ -83,7 +106,12 @@ public class MinHeap<T extends Comparable<T>> implements MinHeapADT<T> {
         return result;
     }
 
-    @Override
+    /**
+     * This method returns the minimum element in the heap
+     * without affecting it. It is a read-only operation.
+     * 
+     * @return Minimum element in heap
+     */
     public T getMin() {
         if (counter == 1) {
             return null;
