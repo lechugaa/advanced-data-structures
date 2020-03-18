@@ -11,7 +11,7 @@ package BinaryTree;
  * @since 2020-03-17
  * @param <T>
  */
-public class BinaryNode<T extends Comparable<T>> {
+public class BinaryNode<T> {
     private T element;                          // binary node's element
     private BinaryNode<T> left, right;          // left and right children
     private BinaryNode<T> father;               // father node
