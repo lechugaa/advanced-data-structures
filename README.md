@@ -2,17 +2,10 @@
 TODO
 
 ## Contents
-* Binary trees
-* Red-black trees
-* AVL tree
+* Binary nodes
+* Linked binary trees
+* AVL trees
 * MinHeap
-* MaxHeap
-
-## Compilation
-TODO
-
-## Use
-TODO
 
 ## References
 TODO
