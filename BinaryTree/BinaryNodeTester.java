@@ -10,21 +10,21 @@ public class BinaryNodeTester {
         BinaryNode<Integer> n6 = new BinaryNode<Integer>(6);
         BinaryNode<Integer> n7 = new BinaryNode<Integer>(7);
 
-        n1.left = n2;
-        n1.right = n3;
+        n1.setLeft(n2);
+        n1.setRight(n3);
 
-        n2.father = n1;
-        n2.left = n4;
-        n2.right = n5;
+        n2.setFather(n1);
+        n2.setLeft(n4);
+        n2.setRight(n5);
 
-        n3.father = n1;
-        n3.left = n6;
-        n3.right = n7;
+        n3.setFather(n1);
+        n3.setLeft(n6);
+        n3.setRight(n7);
 
-        n4.father = n2;
-        n5.father = n2;
-        n6.father = n3;
-        n7.father = n3;
+        n4.setFather(n2);
+        n5.setFather(n2);
+        n6.setFather(n3);
+        n7.setFather(n3);
 
         System.out.println("n1 has " + n1.numberOfDescendents() + " descendents.");
         System.out.println("n2 has " + n2.numberOfDescendents() + " descendents.");

@@ -12,9 +12,9 @@ package BinaryTree;
  * @param <T>
  */
 public class BinaryNode<T extends Comparable<T>> {
-    T element;                          // binary node's element
-    BinaryNode<T> left, right;          // left and right children
-    BinaryNode<T> father;               // father node
+    private T element;                          // binary node's element
+    private BinaryNode<T> left, right;          // left and right children
+    private BinaryNode<T> father;               // father node
 
     /**
      * This method initializes a new BinaryNode instance.
@@ -29,6 +29,35 @@ public class BinaryNode<T extends Comparable<T>> {
         right = null;
         father = null;
     }
+
+    /* Getters and setters */
+    public T getElement() {
+        return element;
+    }
+
+    public BinaryNode<T> getLeft() {
+        return left;
+    }
+    
+    public void setLeft(BinaryNode<T> node) {
+        left = node;
+    } 
+
+    public BinaryNode<T> getRight() {
+        return right;
+    }
+
+    public void setRight(BinaryNode<T> node) {
+        right = node;
+    }
+
+    public BinaryNode<T> getFather() {
+        return father;
+    }
+
+    public void setFather(BinaryNode<T> node) {
+        father = node;
+    } 
 
     /**
      * This method calculates the number of descendents a binary
