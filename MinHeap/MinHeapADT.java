@@ -7,7 +7,7 @@ package MinHeap;
  * 
  * @param <T>
  */
-public interface MinHeapADT<T> {
+public interface MinHeapADT<T extends Comparable<T>> {
     public void insert(T element);
     public T eraseMin();
     public T getMin();
