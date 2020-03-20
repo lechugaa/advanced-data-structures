@@ -11,7 +11,7 @@ package BinaryTree;
  * @since 2020-03-17
  * @param <T>
  */
-public class BinaryNode<T> {
+public class BinaryNode<T extends Comparable<T>> {
     private T element;                          // binary node's element
     private BinaryNode<T> left, right;          // left and right children
     private BinaryNode<T> father;               // father node
@@ -73,5 +73,36 @@ public class BinaryNode<T> {
             counter += right.numberOfDescendents() + 1;
 
         return counter;
+    }
+
+    /**
+     * This method joins a child node to a parent node. 
+     * It takes into accoount if the node should be placed
+     * to the left or right of the parent node and also
+     * if the parent node is the sentinel node.
+     * 
+     * @param node to be added
+     */
+    public void hang(BinaryNode<T> node) {
+
+        // case when the null is passed as a node
+        if (node == null)
+            return;
+
+        // case when the method is called from the sentinel node
+        if (this.element == null) {
+            this.setRight(node);
+            node.setFather(this);
+            return;
+        }
+
+        // for any other node in the tree
+        if (node.getElement().compareTo(this.getElement()) < 0)
+            this.setLeft(node);
+        else
+            this.setRight(node);
+
+        node.setFather(this);
+        return;
     }
 }
