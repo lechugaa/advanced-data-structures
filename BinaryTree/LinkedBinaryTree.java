@@ -29,6 +29,10 @@ public class LinkedBinaryTree<T extends Comparable<T>> implements BinaryTreeADT<
         return root;
     }
 
+    protected BinaryNode<T> getSentinel() {
+        return sentinel;
+    }
+
     public boolean isEmpty() {
         return (counter == 0);
     }
