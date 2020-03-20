@@ -16,7 +16,6 @@ import java.util.LinkedList;
  */
 public class LinkedBinaryTree<T extends Comparable<T>> implements BinaryTreeADT<T> {
 
-    @SuppressWarnings("unused")
     private BinaryNode<T> sentinel, root;
     private int counter;
 
@@ -36,6 +35,10 @@ public class LinkedBinaryTree<T extends Comparable<T>> implements BinaryTreeADT<
 
     public int size() {
         return counter;
+    }
+
+    protected void setCounter(int value) {
+        this.counter = value;
     }
 
     public Iterator<T> inOrder() {
@@ -119,11 +122,10 @@ public class LinkedBinaryTree<T extends Comparable<T>> implements BinaryTreeADT<
         return null;
     }
 
-    // Uncomment to debug
-    // public void setRoot(BinaryNode<T> node) {
-    //     root = node;
-    //     sentinel.setRight(root);
-    //     root.setFather(sentinel);
-    //     counter = node.numberOfDescendents() + 1;
-    // }
+    protected void setRoot(BinaryNode<T> node) {
+        root = node;
+        sentinel.setRight(root);
+        root.setFather(sentinel);
+        counter = node.numberOfDescendents() + 1;
+    }
 }
