@@ -35,6 +35,10 @@ public class BinaryNode<T extends Comparable<T>> {
         return element;
     }
 
+    public void setElement(T newElement) {
+        this.element = newElement;
+    }
+
     public BinaryNode<T> getLeft() {
         return left;
     }
@@ -83,13 +87,11 @@ public class BinaryNode<T extends Comparable<T>> {
      * 
      * @param node to be added
      */
-    public void hang(T element) {
+    public void hang(BinaryNode<T> node) {
 
-        // case when the passed element is null
-        if (element == null)
+        // case when the passed node is null
+        if (node == null)
             return;
-
-        BinaryNode<T> node = new BinaryNode<T>(element);
 
         // case when the method is called from the sentinel node
         if (this.element == null) {
@@ -99,7 +101,7 @@ public class BinaryNode<T extends Comparable<T>> {
         }
 
         // for any other node in the tree
-        if (element.compareTo(this.getElement()) < 0)
+        if (node.getElement().compareTo(this.getElement()) < 0)
             this.setLeft(node);
         else
             this.setRight(node);
