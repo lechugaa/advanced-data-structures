@@ -101,7 +101,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends LinkedBinaryTree<
         if (!isEmpty()) {
             insert(getRoot(), element);
             setCounter(size() + 1);
-        } else
+        } else if(element != null)
             setRoot(new BinaryNode<T>(element));
     }
 
