@@ -15,6 +15,7 @@ public class BinaryNode<T extends Comparable<T>> {
     private T element;                          // binary node's element
     private BinaryNode<T> left, right;          // left and right children
     private BinaryNode<T> father;               // father node
+    private int equilibriumFactor;
 
     /**
      * This method initializes a new BinaryNode instance.
@@ -28,6 +29,7 @@ public class BinaryNode<T extends Comparable<T>> {
         left = null;
         right = null;
         father = null;
+        equilibriumFactor = 0;
     }
 
     /* Getters and setters */
@@ -61,6 +63,14 @@ public class BinaryNode<T extends Comparable<T>> {
 
     public void setFather(BinaryNode<T> node) {
         father = node;
+    } 
+
+    public int getEquilibriumFactor() {
+        return equilibriumFactor;
+    }
+
+    public void setEquilibriumFactor(int ef) {
+        equilibriumFactor = ef;
     } 
 
     /**
