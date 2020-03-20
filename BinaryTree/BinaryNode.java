@@ -85,7 +85,7 @@ public class BinaryNode<T extends Comparable<T>> {
      */
     public void hang(T element) {
 
-        // case when the null is passed as a node
+        // case when the passed element is null
         if (element == null)
             return;
 
