@@ -14,7 +14,7 @@ import java.util.LinkedList;
  * @since 2020-03-18
  * @param <T>
  */
-public class LinkedBinaryTree<T> implements BinaryTreeADT<T> {
+public class LinkedBinaryTree<T extends Comparable<T>> implements BinaryTreeADT<T> {
 
     @SuppressWarnings("unused")
     private BinaryNode<T> sentinel, root;
