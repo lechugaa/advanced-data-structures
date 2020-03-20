@@ -1,11 +1,25 @@
 package BinaryTree;
 
+/**
+ * <h1>Binary Search Tree Class</h1>
+ * Implementation of a binary search tree
+ * 
+ * @author Antonio Lechuga
+ * @since 2020-03-19
+ * @version 1.0
+ * @param <T>
+ */
 public class BinarySearchTree<T extends Comparable<T>> extends LinkedBinaryTree<T> implements BinarySearchTreeADT<T> {
 
+    // constructor
     BinarySearchTree() {
         super();
     }
 
+    /**
+     * This method takes advantage of the structure of a search tree
+     * to optimize search time.
+     */
     @Override
     public boolean contains(T element) {
         if (this.getRoot() == null)
@@ -29,6 +43,10 @@ public class BinarySearchTree<T extends Comparable<T>> extends LinkedBinaryTree<
             return false;
     }
 
+    /**
+     * This method takes advantage of the structure of a search tree
+     * to optimize search time.
+     */
     @Override
     public T find(T element) {
         if (this.contains(element))
@@ -37,10 +55,14 @@ public class BinarySearchTree<T extends Comparable<T>> extends LinkedBinaryTree<
             return null;
     }
 
+    /**
+     * This mehtod inserts a new node into the binary search tree.
+     */
     public void insert(T element) {
-        if (getRoot() != null)
+        if (getRoot() != null) {
             insert(this.getRoot(), element);
-        else
+            setCounter(size() + 1);
+        } else
             setRoot(new BinaryNode<T>(element));
     }
 
