@@ -96,6 +96,24 @@ public class BinaryNode<T extends Comparable<T>> {
 
         return counter;
     }
+    
+    public int height() {
+        return height(this);
+    }
+
+    private int height(BinaryNode<T> actual) {
+
+        if (!actual.hasLeft() && !actual.hasRight()) {
+            return 0;
+        } else if (!actual.hasLeft() && actual.hasRight()) {
+            return height(actual.getRight()) + 1;
+        } else if (actual.hasLeft() && !actual.hasRight()) {
+            return height(actual.getLeft()) + 1;
+        } else {
+            return Math.max(height(actual.getLeft()), height(actual.getRight())) + 1;
+        }
+
+    }
 
     /**
      * This method joins a child node to a parent node. 
