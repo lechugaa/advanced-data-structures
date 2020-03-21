@@ -74,8 +74,83 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
     /* -------------------- DELETION -------------------- */
     @Override
     public T delete(T element) {
+        BinaryNode<T> node = findNode(element);
+        if (node == null)
+            return null;
 
-        return null;
+        setCounter(size() - 1);
+
+        BinaryNode<T> affectedNode;
+
+        if (node.getLeft() == null && node.getRight() == null) {
+            // case when node is a leaf
+            BinaryNode<T> parent = node.getFather();
+            if (parent.getLeft() == node) {
+                parent.setLeft(null);
+                affectedNode = parent;
+                affectedNode.setEquilibriumFactor(affectedNode.getEquilibriumFactor() + 1);
+            } else {
+                parent.setRight(null);
+                affectedNode = parent;
+                affectedNode.setEquilibriumFactor(affectedNode.getEquilibriumFactor() - 1);
+            }
+        } else {
+            if (node.getLeft() != null && node.getRight() != null) {
+                // node has both children
+                BinaryNode<T> actual = node.getRight();
+
+                while (actual.getLeft() != null)
+                    actual = actual.getLeft();
+
+                // getting affected node
+                affectedNode = actual.getFather();
+                if (affectedNode == node)
+                    affectedNode.setEquilibriumFactor(affectedNode.getEquilibriumFactor() - 1);
+                else
+                    affectedNode.setEquilibriumFactor(affectedNode.getEquilibriumFactor() + 1);
+                
+                // reordering
+                if (actual.getRight() == null) {
+                    if (actual.getFather() == node)
+                        actual.getFather().setRight(null);
+                    else
+                        actual.getFather().setLeft(null);
+                } else {
+                    actual.getFather().hang(actual.getRight());
+                }
+                node.setElement(actual.getElement());
+            } else {
+                // case when node has one child
+                affectedNode = node.getFather();
+                if (node == affectedNode.getRight())
+                    affectedNode.setEquilibriumFactor(affectedNode.getEquilibriumFactor() - 1);
+                else
+                    affectedNode.setEquilibriumFactor(affectedNode.getEquilibriumFactor() + 1);
+
+                if (node.getLeft() != null && node.getRight() == null)
+                    node.getFather().hang(node.getLeft());
+                else
+                    node.getFather().hang(node.getRight());
+            }
+        }
+
+        // traversing to root updating equilibrium factors
+        while(Math.abs(affectedNode.getEquilibriumFactor()) != 1 && affectedNode != getSentinel()) {
+            if (affectedNode.getEquilibriumFactor() == 0) {
+                BinaryNode<T> parent = affectedNode.getFather();
+                if (affectedNode == parent.getLeft())
+                    parent.setEquilibriumFactor(parent.getEquilibriumFactor() + 1);
+                else
+                    parent.setEquilibriumFactor(parent.getEquilibriumFactor() - 1);
+
+                affectedNode = parent;
+            } else if (Math.abs(affectedNode.getEquilibriumFactor()) == 2) {
+                rotate(affectedNode);
+                break;
+            }
+        }
+
+        return element;
     }
 
     @Override
