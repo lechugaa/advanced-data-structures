@@ -44,6 +44,10 @@ public class BinaryNode<T extends Comparable<T>> {
     public BinaryNode<T> getLeft() {
         return left;
     }
+
+    public boolean hasLeft() {
+        return getLeft() != null;
+    }
     
     public void setLeft(BinaryNode<T> node) {
         left = node;
@@ -51,6 +55,10 @@ public class BinaryNode<T extends Comparable<T>> {
 
     public BinaryNode<T> getRight() {
         return right;
+    }
+
+    public boolean hasRight() {
+        return getRight() != null;
     }
 
     public void setRight(BinaryNode<T> node) {
@@ -71,7 +79,7 @@ public class BinaryNode<T extends Comparable<T>> {
 
     public void setEquilibriumFactor(int ef) {
         equilibriumFactor = ef;
-    } 
+    }
 
     /**
      * This method calculates the number of descendents a binary
@@ -102,6 +110,15 @@ public class BinaryNode<T extends Comparable<T>> {
         // case when the passed node is null
         if (node == null)
             return;
+
+        // when node is asked to hang parent node
+        if (node == getFather()) {
+            if (this == getFather().getLeft()) {
+                getFather().setLeft(null);
+            } else {
+                getFather().setRight(null);
+            }
+        }
 
         // case when the method is called from the sentinel node
         if (this.element == null) {
