@@ -141,4 +141,29 @@ public class LinkedBinaryTree<T extends Comparable<T>> implements BinaryTreeADT<
         root.setFather(sentinel);
         counter = node.numberOfDescendents() + 1;
     }
+
+    /**
+     * This method prints the tree by level. 
+     * The node's element and its equilibrium 
+     * factor is printed with the format 
+     * [element(equilibrium factor)]
+     */
+    public void printTreeByLevel() {
+        if (isEmpty()) {
+            System.out.println("Empty tree");
+            return;
+        }
+        
+        LinkedList<BinaryNode<T>> queue = new LinkedList<BinaryNode<T>>();
+        queue.add(root);
+        while(!queue.isEmpty()) {
+            BinaryNode<T> actual = queue.removeFirst();
+            System.out.print("[" + actual.getElement() + "(" + actual.getEquilibriumFactor() + ")] ");
+            if (actual.getLeft() != null)
+                queue.add(actual.getLeft());
+            if (actual.getRight() != null)
+                queue.add(actual.getRight());
+        }
+        System.out.print("\n");
+    }
 }
