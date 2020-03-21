@@ -67,7 +67,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends LinkedBinaryTree<
         if (element == null)
             return null;
 
-        if (actual.getElement() == element)
+        if (actual.getElement().compareTo(element) == 0)
             return actual;
 
         if (element.compareTo(actual.getElement()) < 0 && actual.getLeft() != null) 
@@ -144,11 +144,15 @@ public class BinarySearchTree<T extends Comparable<T>> extends LinkedBinaryTree<
                 while (actual.getLeft() != null)
                     actual = actual.getLeft();
 
-                if (actual.getRight() == null)
-                    actual.getFather().setLeft(null);
-                else
+                // reordering
+                if (actual.getRight() == null) {
+                    if (actual.getFather() == node)
+                        actual.getFather().setRight(null);
+                    else
+                        actual.getFather().setLeft(null);
+                } else {
                     actual.getFather().hang(actual.getRight());
-
+                }
                 node.setElement(actual.getElement());
             } else {
                 // case when node has one child
