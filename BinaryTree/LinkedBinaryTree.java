@@ -41,6 +41,15 @@ public class LinkedBinaryTree<T extends Comparable<T>> implements BinaryTreeADT<
         return counter;
     }
 
+    public int height() {
+
+        if (isEmpty()) {
+            return -1;
+        }
+
+        return getRoot().height();
+    }
+
     protected void setCounter(int value) {
         this.counter = value;
     }
