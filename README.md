@@ -1,11 +1,8 @@
 # Advanced Data Structures
-TODO
+This repository was created for the Advanced Data Structures class of Insituto Tecnológico Autónomo de México.
 
 ## Contents
-* Binary nodes
-* Linked binary trees
-* AVL trees
-* MinHeap
-
-## References
-TODO
+* AVL Tree
+* Binary Search Tree
+* Linked Binary Tree
+* Min Heap
